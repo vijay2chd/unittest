@@ -8,12 +8,12 @@ pipeline {
   stages {
     stage('Test') {
        steps {
-	sh "ant test"
+	sh "${ANT_HOME}/bin/ant test"
        }
     }
     stage('Build') {
 	steps {
-          sh "ant jar"
+          sh "${ANT_HOME}/bin/ant jar"
 	}
     }
     stage('Archieve') {
