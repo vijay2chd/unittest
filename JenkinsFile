@@ -3,13 +3,19 @@ pipeline {
 
   stages {
     stage('Test') {
-       sh "ant test"
+       steps {
+	sh "ant test"
+       }
     }
     stage('Build') {
-      sh "ant jar"
+	steps {
+          sh "ant jar"
+	}
     }
     stage('Archieve') {
-      sh 'cp dist/Addition.jar /var/www/html/'
+	steps {
+          sh 'cp dist/Addition.jar /var/www/html/'
+	}
     }
   }
 
