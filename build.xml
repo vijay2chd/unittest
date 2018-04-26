@@ -4,6 +4,7 @@
   <property name="test.build.dir" value="build/test"/>
   <property name="test.src.dir" value="src/test/java"/>
   <property name="test.reports.dir" value="build/test/reports"/>
+  <property name="dist" value="dist"/>
 
   <path id="classpath.test">
     <pathelement location="lib/junit-4.12.jar"/>
@@ -44,8 +45,16 @@
     </junitreport>
   </target>
 
+  <target name="jar" depends="compile">
+     <mkdir dir="${dist}" />
+     <jar destfile="${dist}/Addition.jar">
+	<fileset dir="${main.build.dir}"/>
+     </jar>
+  </target>
+
   <target name="clean">
 	<delete dir="build"/>
+        <delete dir="dist"/>
   </target>
 
 </project>
