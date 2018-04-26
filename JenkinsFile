@@ -1,5 +1,9 @@
 pipeline {
   agent any 
+  environment {
+    JAVA_HOME="/var/lib/jenkins/jdk"
+    ANT_HOME="/var/lib/jenkins/apache-ant-1.10.3"
+  }
 
   stages {
     stage('Test') {
