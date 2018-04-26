@@ -1,0 +1,16 @@
+pipeline {
+  agent any
+
+  stages {
+    stage('Test') {
+       sh "ant test"
+    }
+    stage('Build') {
+      sh "ant jar"
+    }
+    stage('Archieve') {
+      sh 'cp dist/Addition.jar'
+    }
+  }
+
+}
