@@ -9,7 +9,7 @@ pipeline {
       sh "ant jar"
     }
     stage('Archieve') {
-      sh 'cp dist/Addition.jar'
+      sh 'cp dist/Addition.jar /var/www/html/'
     }
   }
 
