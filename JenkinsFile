@@ -21,6 +21,11 @@ pipeline {
           sh 'cp dist/Addition.jar /var/www/html/'
 	}
     }
+    stage('Convert Reports') {
+	steps {
+	  junit 'build/test/reports/*.xml'
+	}
+    }
   }
 
 }
