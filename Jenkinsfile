@@ -22,7 +22,7 @@ pipeline {
     }
     stage('Publish_reports') {
       steps {
-        junit 'TEST-*.xml'
+        junit '**/TEST-*.xml'
       }
     }
     stage('Deploy') {
