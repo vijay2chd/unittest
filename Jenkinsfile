@@ -22,12 +22,17 @@ pipeline {
     }
     stage('Publish_reports') {
       steps {
-        echo "convert to html"
+        junit 'TEST-*.xml'
       }
     }
     stage('Deploy') {
       steps {
         sh 'cp target/*.jar /tmp'
+      }
+    }
+    stage('Fingerprint') {
+      steps {
+        fingerprint '**/*.jar'
       }
     }
   }
