@@ -26,11 +26,11 @@
   <distributionManagement>
     <snapshotRepository>
       <id>nexus-snapshots</id>
-      <url>http://172.31.25.249:8081/repository/sc_snapshot/</url>
+      <url>http://172.31.21.62:8081/repository/sc_snapshot/</url>
     </snapshotRepository>
     <repository>
       <id>nexus-releases</id>
-      <url>http://172.31.25.249:8081/repository/sc_release/</url>
+      <url>http://172.31.21.62:8081/repository/sc_release/</url>
     </repository>
   </distributionManagement>
 
