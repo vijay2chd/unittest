@@ -8,9 +8,12 @@ public class Addition {
     this.num2 = num2;
   }
 
+
   public int getSum() {
     return num1 + num2;
   }
+
+
 
 }
 
