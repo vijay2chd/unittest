@@ -26,11 +26,11 @@
   <distributionManagement>
     <snapshotRepository>
       <id>nexus-snapshots</id>
-      <url>http://ec2-13-232-224-135.ap-south-1.compute.amazonaws.com:8081/repository/sc_snapshot/</url>
+      <url>http://172.31.25.249:8081/repository/sc_snapshot/</url>
     </snapshotRepository>
     <repository>
       <id>nexus-releases</id>
-      <url>http://ec2-13-232-224-135.ap-south-1.compute.amazonaws.com:8081/repository/sc_release/</url>
+      <url>http://172.31.25.249:8081/repository/sc_release/</url>
     </repository>
   </distributionManagement>
 
