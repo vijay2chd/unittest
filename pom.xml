@@ -4,36 +4,41 @@
 <groupId>com.company</groupId>
 <artifactId>helloworld</artifactId>
 <packaging>jar</packaging>
-<version>1.0.0</version>
+<version>1.0.2-SNAPSHOT</version>
 <name>helloworld</name>
 
 <dependencies>
-<dependency> 
-<groupId>junit</groupId> 
-<artifactId>junit</artifactId> 
-<version>4.11</version> 
-<scope>test</scope> 
-</dependency>
 
-<dependency>
-<groupId>org.hamcrest</groupId>
-<artifactId>hamcrest-all</artifactId>
-<version>1.1</version>
-</dependency>
+  <dependency>
+    <groupId>junit</groupId>
+    <artifactId>junit</artifactId>
+    <version>4.11</version>
+    <scope>test</scope>
+  </dependency>
 
+  <dependency>
+    <groupId>org.hamcrest</groupId>
+    <artifactId>hamcrest-all</artifactId>
+    <version>1.1</version>
+  </dependency>
 
 </dependencies>
-  <distributionManagement>
-    <snapshotRepository>
-      <id>nexus-snapshots</id>
-      <url>http://ec2-52-66-197-29.ap-south-1.compute.amazonaws.com:8081/repository/sc_snapshot/</url>
-    </snapshotRepository>
-    <repository>
-      <id>nexus-releases</id>
-      <url>http://ec2-52-66-197-29.ap-south-1.compute.amazonaws.com:8081/repository/sc_release/</url>
-    </repository>
-  </distributionManagement>
 
+<properties>
+    <maven.compiler.source>1.6</maven.compiler.source>
+    <maven.compiler.target>1.6</maven.compiler.target>
+</properties>
+
+
+<distributionManagement>
+   <snapshotRepository>
+      <id>nexus-snapshots</id>
+      <url>http://ec2-35-154-242-25.ap-south-1.compute.amazonaws.com:8081/repository/snapshot/</url>
+   </snapshotRepository>
+   <repository>
+      <id>nexus-releases</id>
+      <url>http://ec2-35-154-242-25.ap-south-1.compute.amazonaws.com:8081/repository/release/</url>
+   </repository>
+</distributionManagement>
 
 </project>
-
