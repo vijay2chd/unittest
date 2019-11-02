@@ -1,41 +1,50 @@
 pipeline {
   agent any
-  environment {
-    PATH = '/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/snap/bin:/var/lib/jenkins/jdk1.8.0_201/bin:/var/lib/jenkins/apache-ant-1.10.5/bin:/var/lib/jenkins/apache-maven-3.6.0/bin'
-    JAVA_HOME = '/var/lib/jenkins/jdk1.8.0_201'
-  }
+#  environment {
+#    JAVA_HOME="/usr/local/jdk1.8.0_171"
+#    ANT_HOME="/usr/local/apache-ant-1.10.3"
+#  }
 
   stages {
-    stage('Test') {
-      steps {
-	sh 'ant test'
-      }
+    stage('Compile') {
+       steps {
+	        sh "mvn compile"
+       }
     }
-    stage('Build') {
-      steps {
-        sh 'ant build'
-      }
-    }
-    stage('Archive') {
-      steps {
-         archiveArtifacts '**/*.jar'
-      }
-    }
-    stage('Publish_reports') {
-      steps {
-        junit '**/TEST-*.xml'
-      }
-    }
-    stage('Deploy') {
-      steps {
-        sh 'cp target/*.jar /tmp'
-      }
-    }
-    stage('Fingerprint') {
-      steps {
-        fingerprint '**/*.jar'
-      }
-    }
-  }
-}
 
+    stage('Build') {
+	     steps {
+          sh "mvn package"
+	     }
+    }
+
+    stage('Install') {
+	     steps {
+          sh 'mvn install'
+	     }
+    }
+
+    stage('Archieve') {
+        steps {
+           archiveArtifacts 'target/*.jar'
+        }
+    }
+
+    stage('FingerPrint') {
+        steps {
+           fingerprint 'target/*.jar'
+        }
+    }
+
+    stage('Notify') {
+        steps {
+        mail bcc: '', body: '''Please check the build "Shoppingcart" in Jenkins. It failed!
+
+        Team Jenkins
+        ''', cc: '', from: '', replyTo: '', subject: 'Build has failed. Please check', to: 'basil1987@gmail.com'
+        }
+    }
+
+  }
+
+}
