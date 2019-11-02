@@ -32,15 +32,6 @@ pipeline {
         }
     }
 
-    stage('Notify') {
-        steps {
-        mail bcc: '', body: '''Please check the build "Shoppingcart" in Jenkins. It failed!
-
-        Team Jenkins
-        ''', cc: '', from: '', replyTo: '', subject: 'Build has failed. Please check', to: 'basil1987@gmail.com'
-        }
-    }
-
   }
 
 }
