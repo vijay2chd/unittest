@@ -1,9 +1,5 @@
 pipeline {
   agent any
-#  environment {
-#    JAVA_HOME="/usr/local/jdk1.8.0_171"
-#    ANT_HOME="/usr/local/apache-ant-1.10.3"
-#  }
 
   stages {
     stage('Compile') {
