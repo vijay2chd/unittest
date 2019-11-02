@@ -1,31 +1,50 @@
 pipeline {
-  agent any 
-  environment {
-    JAVA_HOME="/usr/local/jdk1.8.0_171"
-    ANT_HOME="/usr/local/apache-ant-1.10.3"
-  }
+  agent any
+#  environment {
+#    JAVA_HOME="/usr/local/jdk1.8.0_171"
+#    ANT_HOME="/usr/local/apache-ant-1.10.3"
+#  }
 
   stages {
-    stage('Test') {
+    stage('Compile') {
        steps {
-	sh "${ANT_HOME}/bin/ant test"
+	        sh "mvn compile"
        }
     }
+
     stage('Build') {
-	steps {
-          sh "${ANT_HOME}/bin/ant jar"
-	}
+	     steps {
+          sh "mvn package"
+	     }
     }
+
+    stage('Install') {
+	     steps {
+          sh 'mvn install'
+	     }
+    }
+
     stage('Archieve') {
-	steps {
-          sh 'cp dist/Addition.jar /var/www/html/'
-	}
+        steps {
+           archiveArtifacts 'target/*.jar'
+        }
     }
-    stage('Convert Reports') {
-	steps {
-	  junit 'build/test/reports/*.xml'
-	}
+
+    stage('FingerPrint') {
+        steps {
+           fingerprint 'target/*.jar'
+        }
     }
+
+    stage('Notify') {
+        steps {
+        mail bcc: '', body: '''Please check the build "Shoppingcart" in Jenkins. It failed!
+
+        Team Jenkins
+        ''', cc: '', from: '', replyTo: '', subject: 'Build has failed. Please check', to: 'basil1987@gmail.com'
+        }
+    }
+
   }
 
 }
